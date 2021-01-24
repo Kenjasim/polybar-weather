@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 
+	"github.com/gookit/color"
 	"github.com/kenjasim/weather-forecast/cmd/wthrf/pkg/weather"
 	"gopkg.in/yaml.v2"
 )
@@ -50,6 +51,8 @@ func main() {
 	}
 
 	// Get the response
+	c := color.HEX("4B526D")
 	response := weather.GetWeather(config.Apikey, config.Location)
-	fmt.Printf("%s %.1f°C", icons[response.Weather[0].Icon], response.Temperature.Temp)
+	c.Printf("%s ", icons[response.Weather[0].Icon])
+	fmt.Printf("%.1f°C", response.Temperature.Temp)
 }
